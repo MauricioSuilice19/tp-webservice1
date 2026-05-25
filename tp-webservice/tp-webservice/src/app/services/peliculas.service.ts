@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { TraduccionService } from './traduccion.service';
 
 export interface Pelicula {
@@ -39,7 +39,9 @@ export class PeliculasService {
         }))
       ),
       switchMap((peliculas) => {
-        const traducciones$ = peliculas.map((p) => this.traduccion.traducir(p.description));
+        const traducciones$ = peliculas.map((p) =>
+          this.traduccion.traducir(p.description).pipe(catchError(() => of(p.description)))
+        );
         if (traducciones$.length === 0) return of(peliculas);
         return forkJoin(traducciones$).pipe(
           map((textosTraducidos) => {
