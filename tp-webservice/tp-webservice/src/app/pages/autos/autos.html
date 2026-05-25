@@ -1,0 +1,53 @@
+<section class="container py-4">
+  <h1 class="h3">Generador de tarjetas - marcas y modelos</h1>
+  <p class="text-secondary">Se consulta un Web Service para obtener marcas de autos y luego sus modelos.</p>
+
+  @if (cargandoMarcas) {
+    <div class="alert alert-info">Cargando marcas...</div>
+  }
+
+  @if (error) {
+    <div class="alert alert-danger">{{ error }}</div>
+  }
+
+  <div class="row g-3">
+    @for (marca of marcas; track marca.makeId) {
+      <div class="col-6 col-md-4 col-lg-3">
+        <button
+          type="button"
+          class="btn btn-light border shadow-sm w-100 h-100 py-3"
+          data-bs-toggle="modal"
+          data-bs-target="#modelosModal"
+          (click)="verModelos(marca)"
+        >
+          <i class="bi bi-car-front d-block fs-2 mb-2 text-primary"></i>
+          {{ marca.makeName }}
+        </button>
+      </div>
+    }
+  </div>
+</section>
+
+<div class="modal fade" id="modelosModal" tabindex="-1" aria-labelledby="modelosModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="modelosModalLabel">Modelos de {{ marcaSeleccionada }}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        @if (cargandoModelos) {
+          <div class="alert alert-info">Cargando modelos...</div>
+        } @else if (modelos.length === 0) {
+          <p class="text-secondary mb-0">No se encontraron modelos para esta marca.</p>
+        } @else {
+          <ul class="list-group">
+            @for (modelo of modelos; track modelo.modelId) {
+              <li class="list-group-item">{{ modelo.modelName }}</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+  </div>
+</div>

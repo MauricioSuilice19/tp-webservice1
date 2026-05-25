@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-semibold" routerLink="/peliculas">
+      <i class="bi bi-cloud-arrow-down me-2"></i>TP Servicios Web
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menuPrincipal"
+      aria-controls="menuPrincipal"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menuPrincipal">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/peliculas" routerLinkActive="active">Películas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/autos" routerLinkActive="active">Autos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/conversor" routerLinkActive="active">Conversor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/texto-audio" routerLinkActive="active">Texto a audio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/api-extra" routerLinkActive="active">API extra</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,31 @@
+<section class="container py-4">
+  <h1 class="h3">Texto a audio</h1>
+  <p class="text-secondary">Se envía texto a una API y se reproduce el audio retornado con una etiqueta media.</p>
+
+  <div class="card shadow-sm p-4 audio-form">
+    <div class="mb-3">
+      <label class="form-label" for="texto">Texto</label>
+      <textarea id="texto" class="form-control" rows="4" [(ngModel)]="texto" name="texto"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="voz">Idioma / voz</label>
+      <select id="voz" class="form-select" [(ngModel)]="voz" name="voz">
+        @for (opcion of voces; track opcion.valor) {
+          <option [value]="opcion.valor">{{ opcion.nombre }}</option>
+        }
+      </select>
+    </div>
+
+    <button class="btn btn-primary" type="button" (click)="generarAudio()">
+      Generar audio
+    </button>
+
+    @if (audioUrl) {
+      <div class="mt-4">
+        <label class="form-label">Resultado</label>
+        <audio class="w-100" controls [src]="audioUrl"></audio>
+      </div>
+    }
+  </div>
+</section>

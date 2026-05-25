@@ -1,0 +1,20 @@
+<section class="container py-4">
+  <h1 class="h3">API extra - generador de código QR</h1>
+  <p class="text-secondary">Formulario para capturar información y mostrar el resultado de un Web Service.</p>
+
+  <div class="card shadow-sm p-4 qr-form">
+    <label class="form-label" for="qrTexto">Texto o URL</label>
+    <input id="qrTexto" class="form-control" type="text" [(ngModel)]="texto" name="texto" />
+
+    <button class="btn btn-primary mt-3" type="button" (click)="generarQr()">
+      Generar QR
+    </button>
+
+    @if (qrUrl) {
+      <div class="text-center mt-4">
+        <img [src]="qrUrl" [alt]="'Código QR para ' + texto" class="img-thumbnail qr-img" />
+        <p class="small text-secondary mt-2 mb-0">Resultado generado por API externa.</p>
+      </div>
+    }
+  </div>
+</section>
